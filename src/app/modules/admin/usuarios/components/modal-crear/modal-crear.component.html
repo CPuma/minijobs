@@ -1,0 +1,70 @@
+<div class="modal-header">
+    <h4 class="modal-title">Hi there!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="usuarioFormGroup">
+
+        <div class="input-group input-group-lg mb-3">
+            <input formControlName="usuario" type="text" class="form-control" placeholder="Usuario">
+        </div>
+        <div class="input-group input-group-lg mb-3">
+            <input formControlName="contrasenia" type="text" class="form-control" placeholder="Contraseña">
+        </div>
+        <div class="input-group input-group-lg mb-3">
+            <input formControlName="apellidoPaterno" type="text" class="form-control" placeholder="Apellido Paterno">
+        </div>
+        <div class="input-group input-group-lg mb-3">
+            <input formControlName="apellidoMaterno" type="text" class="form-control" placeholder="Apellido Materno">
+        </div>
+        <div class="input-group input-group-lg mb-3">
+            <input formControlName="nombres" type="text" class="form-control" placeholder="Nombres">
+        </div>
+        <div class="input-group input-group-lg mb-3">
+            <input formControlName="celular" type="text" class="form-control" placeholder="Celular">
+        </div>
+        <div class="input-group input-group-lg mb-3">
+            <input formControlName="codigo" type="text" class="form-control" placeholder="Codigo">
+        </div>
+        <div class="input-group input-group-lg mb-3">
+            <input formControlName="direccion" type="text" class="form-control" placeholder="Direccion">
+        </div>
+        <div class="input-group input-group-lg mb-3">
+            <input formControlName="fechaNacimiento" type="text" class="form-control" placeholder="Fecha de Nacimiento">
+        </div>
+        <div class="input-group input-group-lg mb-3">
+            <!-- <input formControlName="genero" type="text" class="form-control" placeholder="Genero"> -->
+            <select formControlName="genero" class="form-control" name="" id="">
+                <option value="MASCULINO">Masculino</option>
+                <option value="FEMENINO">Femenino</option>
+            </select>
+        </div>
+        <div class="input-group input-group-lg mb-3">
+            <select formControlName="documentoTipo" class="form-control" name="" id="">
+                <option value="DNI">DNI</option>
+                <option value="PASSAPORTE">Pasaporte</option>
+                <option value="CARNET DE EXTRANJERIA">Carnet de Extranjeria</option>
+            </select>
+            <!-- <input formControlName="documentoTipo" type="text" class="form-control" placeholder="Tipo de Documento"> -->
+        </div>
+        <div class="input-group input-group-lg mb-3">
+            <input formControlName="documentoNumero" type="text" class="form-control" placeholder="Numero de Documento">
+        </div>
+        <div class="input-group input-group-lg mb-3">
+            <input formControlName="banco" type="text" class="form-control" placeholder="Banco">
+        </div>
+        <div class="input-group input-group-lg mb-3">
+            <input formControlName="observacion" type="text" class="form-control" placeholder="Observacion">
+        </div>
+        <button class="btn btn-primary" (click)="crearUsuario(usuarioFormGroup.value)"
+            [disabled]="usuarioFormGroup.invalid">Registrar</button>
+        <button class="btn btn-success" (click)="actualizarUsuario(usuarioFormGroup.value)"
+            [disabled]="usuarioFormGroup.invalid || !usuarioFormGroup.value.key">Actualizar</button>
+        <!-- <button class="btn btn-primary" (click)="crearUsuario()">Registrar</button> -->
+    </form>
+</div>
+<div class="modal-footer">
+    <!-- <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button> -->
+</div>

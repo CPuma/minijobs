@@ -6,11 +6,12 @@ import { RouterModule } from '@angular/router';
 import { AdminRouting } from './admin.routing';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { AdminComponent } from './admin.component';
+import { SidebarAdminComponent } from './shared/sidebar-admin/sidebar-admin.component';
 
 
 
 @NgModule({
-  declarations: [HeaderAdminComponent, FooterAdminComponent, AdminComponent],
+  declarations: [HeaderAdminComponent, FooterAdminComponent, AdminComponent, SidebarAdminComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(AdminRouting),

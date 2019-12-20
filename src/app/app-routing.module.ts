@@ -3,7 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 const routes: Routes = [
-
+  {
+    path:'**',
+    redirectTo:'admin'
+  },
   {
     path: 'home',
     loadChildren: './modules/home/home.module#HomeModule'

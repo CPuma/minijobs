@@ -1,6 +1,97 @@
-<p>lista-usuarios works!</p>
-<p>lista-usuarios works!</p>
-<p>lista-usuarios works!</p>
-<p>lista-usuarios works!</p>
-<p>lista-usuarios works!</p>
-<p>lista-usuarios works!</p>
+<div class="d-flex bd-highlight my-3">
+    <div class="mr-auto p-2 bd-highlight">
+        <button class="btn btn-lg btn-outline-primary" (click)="open('formUsuario')">Crear Usuario</button>
+    </div>
+    <div class="mr-auto p-2 bd-highlight">
+        <input type="text" (change)="buscarUsuario($event.target.value)" class="form-control mb-2" id="inlineFormInput" placeholder="Busca por ID">
+    </div>
+    <div class="p-2 bd-highlight">
+        <select class="custom-select" (change)="listartUsuarios($event.target.value)" id="">
+            <option selected>Ordenar por ...</option>
+            <option value="fechaCreacion">Ultimo agregado</option>
+            <option value="estado">Estado</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-group">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Nombres</th>
+                        <th scope="col">celular</th>
+                        <th scope="col">fecha de Inscripción</th>
+                        <th scope="col">tipo de Doc.</th>
+                        <th scope="col"># de Doc.</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">## Operaciones ## </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let usuario of usuarios; let i = index">
+                        <th scope="row">{{i}}</th>
+                        <td>{{usuario.usuario}}</td>
+                        <td>{{usuario.apellidoPaterno}} {{usuario.apellidoPaterno}}</td>
+                        <td>{{usuario.nombres}}</td>
+                        <td>{{usuario.celular}}</td>
+                        <td>{{usuario.fechaCreacion}}</td>
+                        <td>{{usuario.documentoTipo}}</td>
+                        <td>{{usuario.documentoNumero}}</td>
+                        <td>{{usuario.estado}}</td>
+                        <td>
+                            <button class="btn btn-danger" (click)="open('formUsuario',usuario)">Editar</button>
+                            <button *ngIf="usuario.estado === 'inactivo' " class="btn btn-success"
+                                (click)="open('cambiarEstado',usuario, 'activo')">Activar</button>
+                            <button *ngIf="usuario.estado ==='activo'" class="btn btn-secondary"
+                                (click)="open('cambiarEstado',usuario, 'inactivo')">Inhabilitar</button>
+                        </td>
+
+
+
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- ========== MODAL ================ -->
+<!-- <ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+                <label for="dateOfBirth">Date of birth</label>
+                <div class="input-group">
+
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+</ng-template> -->
+
+<!-- <button class="btn btn-outline-primary mr-2" (click)="open('activar')">
+    <div>Open confirm modal</div>
+    <div class="text-dark" aria-hidden="true"><small>&times; button will be focused</small></div>
+</button> -->
