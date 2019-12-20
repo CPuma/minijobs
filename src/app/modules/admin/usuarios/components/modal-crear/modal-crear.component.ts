@@ -1,9 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuariosFirebaseService } from 'src/app/core/services/usuarios-firebase.service';
-import { Usuario } from 'src/app/shared/models/usuario';
-import { DatePipe } from '@angular/common';
+import { Usuario } from 'src/app/core/models/usuario';
 
 @Component({
 	selector: 'app-modal-crear',
@@ -13,9 +12,8 @@ import { DatePipe } from '@angular/common';
 export class ModalCrearComponent implements OnInit {
 	@Input() usuario;
 	titulo: String;
-
+	isCreate :boolean;
 	today = new Date().toLocaleDateString();
-	// todayParse: string;
 
 	usuarioFormGroup: FormGroup;
 
@@ -23,7 +21,6 @@ export class ModalCrearComponent implements OnInit {
 		public activeModal: NgbActiveModal,
 		private usuarioFireService: UsuariosFirebaseService,
 		private formBuilder: FormBuilder,
-		private datePipe: DatePipe
 	) {}
 
 	ngOnInit(): void {
@@ -35,8 +32,10 @@ export class ModalCrearComponent implements OnInit {
 		if (this.usuario) {
 			this.editarUsuario(this.usuario);
 			this.titulo = 'Editando Usuario!';
+			this.isCreate=false
 		} else {
 			this.titulo = 'Creando Usuario!';
+			this.isCreate=true
 		}
 	}
 

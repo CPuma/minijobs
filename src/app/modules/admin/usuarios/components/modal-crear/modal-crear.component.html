@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title">Hi there!</h4>
+<h4 class="modal-title">{{titulo}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -58,9 +58,9 @@
         <div class="input-group input-group-lg mb-3">
             <input formControlName="observacion" type="text" class="form-control" placeholder="Observacion">
         </div>
-        <button class="btn btn-primary" (click)="crearUsuario(usuarioFormGroup.value)"
+        <button  *ngIf="isCreate" class="btn btn-primary" (click)="crearUsuario(usuarioFormGroup.value)"
             [disabled]="usuarioFormGroup.invalid">Registrar</button>
-        <button class="btn btn-success" (click)="actualizarUsuario(usuarioFormGroup.value)"
+        <button  *ngIf="!isCreate"  class="btn btn-success" (click)="actualizarUsuario(usuarioFormGroup.value)"
             [disabled]="usuarioFormGroup.invalid || !usuarioFormGroup.value.key">Actualizar</button>
         <!-- <button class="btn btn-primary" (click)="crearUsuario()">Registrar</button> -->
     </form>

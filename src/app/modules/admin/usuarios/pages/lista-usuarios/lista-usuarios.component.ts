@@ -3,7 +3,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ModalCrearComponent } from '../../components/modal-crear/modal-crear.component';
 import { ModalActivarComponent } from '../../components/modal-activar/modal-activar.component';
 import { UsuariosFirebaseService } from 'src/app/core/services/usuarios-firebase.service';
-import { Usuario, EEstadoUsuario, ESexo, EDocumentoTipo } from 'src/app/shared/models/usuario';
+import { Usuario } from 'src/app/core/models/usuario';
 
 import { map, filter } from 'rxjs/operators';
 
