@@ -1,0 +1,39 @@
+<div class="card bg-light">
+    <article class="card-body mx-auto" style="max-width: 400px;">
+        
+        
+        <p class="divider-text">
+            <span class="bg-light">LOGIN</span>
+        </p>
+
+        <div class="form-login" [formGroup]="formLogin">
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">@</span>
+                </div>
+                <input formControlName="email" class="form-control" placeholder="Email" type="email">
+            </div> <!-- form-group// -->
+
+
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                </div>
+                <input formControlName="password" class="form-control" placeholder="Ingrese Contraseña" type="password">
+            </div> <!-- form-group// -->
+
+            <div class="form-group">
+                <button  (click)="login()" [disabled]="formLogin.invalid" class="btn btn-primary btn-block">Iniciar Sesion</button>
+            </div> <!-- form-group// -->
+            <p class="text-center">No tienes una cuenta? <a routerLink="/auth/register">Registrate!</a> </p>
+        </div>
+        <p class="divider-text">
+            <span class="bg-light">O</span>
+        </p>
+        <p>
+            <button (click)="loginWithGoogle()"  class="btn btn-block btn-google"> <i class="fab fa-twitter"></i>   Login vía Google</button>
+            <button (click)="loginWithFacebook()"  class="btn btn-block btn-facebook"> <i class="fab fa-facebook-f"></i>   Login vía
+                facebook</button>
+        </p>
+    </article>
+</div>

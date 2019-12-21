@@ -1,0 +1,32 @@
+.forms {
+	width: 100%;
+	height: calc(100% - 50px);
+	position: absolute;
+	top: 50px;
+	display: flex;
+	flex-direction: row;
+	padding: 0;
+	/* background:red; */
+	z-index: -1;
+}
+.forms-auth-portada {
+	width: 65%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+.forms-auth-portada img{
+	width: 100%;
+	height: auto;
+
+}
+.forms-auth {
+	width: 35%;
+	margin: 0;
+	height: 100%;
+	padding: 0;
+	background: #f8f9fa;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

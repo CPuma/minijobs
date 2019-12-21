@@ -1,42 +1,28 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { UsuariosFirebaseService } from 'src/app/core/services/usuarios-firebase.service';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { UsuarioInterface } from 'src/app/core/models/usuario';
+import { UsuariosFirebaseService } from 'src/app/core/services/usuarios-firebase.service';
+import { AuthenticationService } from 'src/app/core/authentication/authentication.service';
 
 @Component({
-	selector: 'app-modal-crear',
-	templateUrl: './modal-crear.component.html',
-	styleUrls: [ './modal-crear.component.css' ]
+	selector: 'app-register-profile',
+	templateUrl: './register-profile.component.html',
+	styleUrls: [ './register-profile.component.css' ]
 })
-export class ModalCrearComponent implements OnInit {
-	@Input() usuario;
-	titulo: String;
-	isCreate :boolean;
+export class RegisterProfileComponent implements OnInit {
 	today = new Date().toLocaleDateString();
-
 	usuarioFormGroup: FormGroup;
-
 	constructor(
-		public activeModal: NgbActiveModal,
 		private usuarioFireService: UsuariosFirebaseService,
 		private formBuilder: FormBuilder,
+		private authService: AuthenticationService
 	) {}
 
-	ngOnInit(): void {
+	ngOnInit() {
+		this.authService.isAuth().subscribe((user) => {
+			console.log('AUTH', user);
+		});
 		this.intanciarUsuarioForm();
-		// this.todayParse = this.datePipe.transform(this.today, 'dd-MM-yyyy');
-
-		console.log('fecha', this.today);
-
-		if (this.usuario) {
-			this.editarUsuario(this.usuario);
-			this.titulo = 'Editando Usuario!';
-			this.isCreate=false
-		} else {
-			this.titulo = 'Creando Usuario!';
-			this.isCreate=true
-		}
 	}
 
 	intanciarUsuarioForm() {
@@ -68,11 +54,9 @@ export class ModalCrearComponent implements OnInit {
 
 	crearUsuario(usuario: UsuarioInterface) {
 		this.usuarioFireService.crearUsuario(usuario);
-		this.activeModal.close('Ok click');
 	}
 
 	actualizarUsuario(usuario: UsuarioInterface) {
 		this.usuarioFireService.actualizarUsuario(usuario);
-		this.activeModal.close('Ok click');
 	}
 }

@@ -19,29 +19,34 @@ export interface Roles{
 	usuario?:boolean;
 }
 
-export interface Usuario {
-	key?: string;
-	usuario?:string;
-	contrasenia?: string;
-	codigo?: string;
+export interface UsuarioInterface {
+	id?: string; // se toma del uid -- del  inicio de sesion por  al registrar
+	
+	// usuario?:string;	// YA NO VA
+	// contrasenia?: string;	// YA NO VA
+	// codigo?: string;	// No se para que es esto ????????
 
 	apellidoMaterno: string;
 	apellidoPaterno: string;
 	nombres: string;
 
+	email: string;
 	celular: string;
 	direccion: string;
-	estado:string;
-	// estado: EEstadoUsuario; //  0 inactivo, 1 activo, 2 suspendido
+
+	estado:string;	// si solo es activo e inactivo BOOLEAN true o false
+	// estado:  SI ES INT --> //  0 inactivo, 1 activo, 2 suspendido
+
 	fechaNacimiento: Date;
 	fechaCreacion: Date;
-	genero: ESexo; // M masculino, F Femenino
-	documentoTipo: EDocumentoTipo; // DNI ,PASSPORTE ,CARNET DE EXTRANJERIA
+	genero: ESexo; // M masculino, F Femenino (SOLO UNA LETRA)
+	documentoTipo: EDocumentoTipo; //(1)DNI , (2)PASSPORTE ,(3)CARNET DE EXTRANJERIA  deberia ser con INT
 	documentoNumero: string;
 
 	banco?: string;
 	observacion?: string;
 	numeroCuenta?: string;
 
-	roles:Roles
+	roles:Roles		// array { admin:false, afiliador:true, usuario:true}
+	isProfileComplete:boolean;// si se registra por google pero aun no completa sus DATOS... debera redireccionarlo para que termine de registrarse bien
 }

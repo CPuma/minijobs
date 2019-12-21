@@ -8,11 +8,11 @@
     <form [formGroup]="usuarioFormGroup">
 
         <div class="input-group input-group-lg mb-3">
-            <input formControlName="usuario" type="text" class="form-control" placeholder="Usuario">
+            <input formControlName="email" type="email" class="form-control" placeholder="Email">
         </div>
-        <div class="input-group input-group-lg mb-3">
+        <!-- <div class="input-group input-group-lg mb-3">
             <input formControlName="contrasenia" type="text" class="form-control" placeholder="Contraseña">
-        </div>
+        </div> -->
         <div class="input-group input-group-lg mb-3">
             <input formControlName="apellidoPaterno" type="text" class="form-control" placeholder="Apellido Paterno">
         </div>
@@ -61,7 +61,7 @@
         <button  *ngIf="isCreate" class="btn btn-primary" (click)="crearUsuario(usuarioFormGroup.value)"
             [disabled]="usuarioFormGroup.invalid">Registrar</button>
         <button  *ngIf="!isCreate"  class="btn btn-success" (click)="actualizarUsuario(usuarioFormGroup.value)"
-            [disabled]="usuarioFormGroup.invalid || !usuarioFormGroup.value.key">Actualizar</button>
+            [disabled]="usuarioFormGroup.invalid || !usuarioFormGroup.value.id">Actualizar</button>
         <!-- <button class="btn btn-primary" (click)="crearUsuario()">Registrar</button> -->
     </form>
 </div>

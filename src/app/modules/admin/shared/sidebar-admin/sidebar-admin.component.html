@@ -4,12 +4,12 @@
     </header>
     <ul class="nav">
       <li>
-        <a href="#">
+        <a routerLink="/admin">
           <img class="icon" src="assets/img/usuario.svg" alt=""> Usuarios
         </a>
       </li>
       <li>
-        <a href="#">
+        <a >
           <img class="icon" src="assets/img/trabajador.svg" alt=""> Trabajos
         </a>
       </li>
@@ -49,5 +49,10 @@
           <i class="zmdi zmdi-comment-more"></i> Contact
         </a>
       </li> -->
+      <li (click)="logout()" class="bg-danger center">
+        <a >
+          Cerrar Session
+        </a>
+      </li> 
     </ul>
 </aside>

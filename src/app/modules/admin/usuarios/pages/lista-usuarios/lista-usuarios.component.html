@@ -1,10 +1,14 @@
 <div class="d-flex bd-highlight my-3">
-    <div class="mr-auto p-2 bd-highlight">
+
+    <!-- PARA CREAAR SIN LOGUEARSE AUTOMATICAMENTe, debe usarse  el ADMIN SDK -->
+    <!-- <div class="mr-auto p-2 bd-highlight">
         <button class="btn btn-lg btn-outline-primary" (click)="open('formUsuario')">Crear Usuario</button>
-    </div>
-    <div class="mr-auto p-2 bd-highlight">
-        <input type="text" (change)="buscarUsuario($event.target.value)" class="form-control mb-2" id="inlineFormInput" placeholder="Busca por ID">
-    </div>
+    </div> -->
+
+    <!-- <div class="mr-auto p-2 bd-highlight">
+        <input type="text" (change)="buscarUsuario($event.target.value)" class="form-control mb-2" id="inlineFormInput"
+            placeholder="Busca por ID">
+    </div> -->
     <div class="p-2 bd-highlight">
         <select class="custom-select" (change)="listartUsuarios($event.target.value)" id="">
             <option selected>Ordenar por ...</option>
@@ -35,7 +39,7 @@
 
                     <tr *ngFor="let usuario of usuarios; let i = index">
                         <th scope="row">{{i}}</th>
-                        <td>{{usuario.usuario}}</td>
+                        <td>{{usuario.email}}</td>
                         <td>{{usuario.apellidoPaterno}} {{usuario.apellidoPaterno}}</td>
                         <td>{{usuario.nombres}}</td>
                         <td>{{usuario.celular}}</td>
@@ -45,9 +49,9 @@
                         <td>{{usuario.estado}}</td>
                         <td>
                             <button class="btn btn-danger" (click)="open('formUsuario',usuario)">Editar</button>
-                            <button *ngIf="usuario.estado === 'inactivo' " class="btn btn-success"
+                            <button *ngIf="usuario.estado && usuario.estado.toLowerCase() === 'inactivo' " class="btn btn-success"
                                 (click)="open('cambiarEstado',usuario, 'activo')">Activar</button>
-                            <button *ngIf="usuario.estado ==='activo'" class="btn btn-secondary"
+                            <button *ngIf="usuario.estado && usuario.estado.toLowerCase() ==='activo'" class="btn btn-secondary"
                                 (click)="open('cambiarEstado',usuario, 'inactivo')">Inhabilitar</button>
                         </td>
 
@@ -62,4 +66,3 @@
         </div>
     </div>
 </div>
-

@@ -7,6 +7,7 @@ import { AdminRouting } from './admin.routing';
 import { UsuariosModule } from './usuarios/usuarios.module';
 import { AdminComponent } from './admin.component';
 import { SidebarAdminComponent } from './shared/sidebar-admin/sidebar-admin.component';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 
 
 
@@ -17,6 +18,9 @@ import { SidebarAdminComponent } from './shared/sidebar-admin/sidebar-admin.comp
     RouterModule.forChild(AdminRouting),
 
     UsuariosModule
+  ],
+  providers:[
+    AuthGuard
   ]
 })
 export class AdminModule { }

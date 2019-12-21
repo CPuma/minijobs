@@ -3,7 +3,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ModalCrearComponent } from '../../components/modal-crear/modal-crear.component';
 import { ModalActivarComponent } from '../../components/modal-activar/modal-activar.component';
 import { UsuariosFirebaseService } from 'src/app/core/services/usuarios-firebase.service';
-import { Usuario } from 'src/app/core/models/usuario';
+import { UsuarioInterface } from 'src/app/core/models/usuario';
 
 import { map, filter } from 'rxjs/operators';
 
@@ -19,7 +19,7 @@ const MODALS = {
 })
 export class ListaUsuariosComponent implements OnInit {
 	closeResult: string;
-	usuarios: Usuario[] | any;
+	usuarios: UsuarioInterface[] | any;
 
 	constructor(private modalService: NgbModal, private usuarioFireService: UsuariosFirebaseService) {}
 
@@ -31,7 +31,7 @@ export class ListaUsuariosComponent implements OnInit {
 		this.usuarioFireService
 			.listaUsuarios(orderby)
 			.snapshotChanges()
-			.pipe(map((changes) => changes.map((c) => ({ key: c.payload.key, ...c.payload.val() }))))
+			.pipe(map((changes) => changes.map((c) => ({ id: c.payload.key, ...c.payload.val() }))))
 			.subscribe((usuarios) => {
 				console.log(usuarios);
 				this.usuarios = usuarios;
@@ -42,7 +42,7 @@ export class ListaUsuariosComponent implements OnInit {
 			.listaUsuarios()
 			.snapshotChanges()
 			.pipe(
-				map((changes) => changes.map((c) => ({ key: c.payload.key, ...c.payload.val() })))
+				map((changes) => changes.map((c) => ({ id: c.payload.key, ...c.payload.val() })))
 			)
 			.subscribe((usuarios) => {
 				console.log(usuarios);

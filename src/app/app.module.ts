@@ -19,44 +19,39 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import {AngularFireDatabaseModule} from '@angular/fire/database'
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { environment } from '../environments/environment';
 import { TimePipe } from './shared/pipes/time.pipe';
 import { DatePipe } from '@angular/common';
-
+import { RouterModule } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    
-    // SHARED
-    HeaderComponent, // General HEader
-    FooterComponent,  // General Footer
-    LoaderComponent,
-    CapitalizerPipe,
-    TimePipe
+	declarations: [
+		AppComponent,
 
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
+	],
+	imports: [
+		BrowserModule,
+		RouterModule,
+		AppRoutingModule,
 
-    // FireBASe
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule, 
-    AngularFireAuthModule, 
-    AngularFireDatabaseModule,
-    // AngularFireStorageModule,
+		// FireBASe
+		AngularFireModule.initializeApp(environment.firebase),
+		AngularFirestoreModule,
+		AngularFireAuthModule,
+		AngularFireDatabaseModule,
+		// AngularFireStorageModule,
 
+		NgbModule,
 
-    NgbModule,
-
-    CoreModule,  // SUPER IMPORTANTE
-    // Modulos
-    HomeModule
-  ],
-  providers: [DatePipe],
-  bootstrap: [AppComponent]
+		CoreModule, // SUPER IMPORTANTE
+		// Modulos
+		// HomeModule
+	],
+	
+	providers: [ DatePipe, AuthGuard ],
+	bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {}

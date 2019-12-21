@@ -9,15 +9,22 @@ import { UsuariosFirebaseService } from 'src/app/core/services/usuarios-firebase
 })
 export class ModalActivarComponent implements OnInit {
 	@Input() usuario;
-	@Input() estado:string;
+	@Input() estado: string;
+	isActivation: boolean = false;
 
 	constructor(public activeModal: NgbActiveModal, private usuarioFireService: UsuariosFirebaseService) {}
 
 	ngOnInit() {
+		if (this.estado.toLocaleLowerCase() == 'activo') {
+			this.isActivation = true;
+		}
 		console.log('Usuario', this.usuario);
 	}
 	cambiarEstado() {
-		this.usuarioFireService.estadoUsuario(this.usuario.key, this.estado);
+		this.usuarioFireService.estadoUsuario(this.usuario.id, this.estado);
 		this.activeModal.close('Ok click');
+	}
+	cancelar() {
+		this.activeModal.close('cancel click');
 	}
 }
