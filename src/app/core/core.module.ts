@@ -10,6 +10,9 @@ import { AuthGuard } from './guards/auth.guard';
   imports: [
     CommonModule,
     RouterModule
+  ],
+  providers:[
+    AuthGuard
   ]
 })
 export class CoreModule { }

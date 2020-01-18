@@ -15,13 +15,13 @@ export class ModalActivarComponent implements OnInit {
 	constructor(public activeModal: NgbActiveModal, private usuarioFireService: UsuariosFirebaseService) {}
 
 	ngOnInit() {
-		if (this.estado.toLocaleLowerCase() == 'activo') {
+		if (this.estado.toUpperCase() == 'ACTIVO') {
 			this.isActivation = true;
 		}
 		console.log('Usuario', this.usuario);
 	}
 	cambiarEstado() {
-		this.usuarioFireService.estadoUsuario(this.usuario.id, this.estado);
+		this.usuarioFireService.estadoUsuario(this.usuario.documentoNumero, this.estado.toUpperCase());
 		this.activeModal.close('Ok click');
 	}
 	cancelar() {

@@ -14,6 +14,7 @@ const MODALS = {
 
 @Component({
 	selector: 'app-lista-usuarios',
+
 	templateUrl: './lista-usuarios.component.html',
 	styleUrls: [ './lista-usuarios.component.css' ]
 })
@@ -31,23 +32,17 @@ export class ListaUsuariosComponent implements OnInit {
 		this.usuarioFireService
 			.listaUsuarios(orderby)
 			.snapshotChanges()
-			.pipe(map((changes) => changes.map((c) => ({ id: c.payload.key, ...c.payload.val() }))))
+			.pipe(map((changes) => changes.map((c) => c.payload.val())))
 			.subscribe((usuarios) => {
-				console.log(usuarios);
 				this.usuarios = usuarios;
+				console.log(this.usuarios);
 			});
 	}
 	buscarUsuario(dni) {
-		this.usuarioFireService
-			.listaUsuarios()
-			.snapshotChanges()
-			.pipe(
-				map((changes) => changes.map((c) => ({ id: c.payload.key, ...c.payload.val() })))
-			)
-			.subscribe((usuarios) => {
-				console.log(usuarios);
-				this.usuarios = usuarios;
-			});
+		this.usuarioFireService.buscarUsuario(dni).then((usuario) => (this.usuarios = usuario)).catch((error) => {
+			console.log(error);
+			return [];
+		});
 	}
 
 	open(nameModal: string, usuario?, estado?: string) {

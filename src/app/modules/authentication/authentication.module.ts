@@ -14,14 +14,13 @@ import { AuthGuard } from 'src/app/core/guards/auth.guard';
 @NgModule({
 	declarations: [ LoginComponent, RegisterComponent, AuthenticationComponent, RegisterProfileComponent ],
 	imports: [
+		RouterModule,
 		CommonModule,
 		RouterModule.forChild(AuthenticationRouting),
 		ReactiveFormsModule,
-		SharedModule,
-		
-	], providers:[
-		AuthGuard
-	]
+		SharedModule
+	],
+	providers: [ AuthGuard ]
 	// entryComponents: [ HeaderComponent ]
 })
 export class AuthenticationModule {}

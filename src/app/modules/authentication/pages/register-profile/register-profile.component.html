@@ -1,8 +1,8 @@
-<form [formGroup]="usuarioFormGroup">
+<form  *ngIf="usuarioFormGroup" [formGroup]="usuarioFormGroup">
 
-    <div class="input-group input-group-lg mb-3">
-        <input formControlName="email" type="email" class="form-control" placeholder="Email" editable=false>
-    </div>
+    <!-- <div class="input-group input-group-lg mb-3">
+        <input formControlName="email" type="email" class="form-control" placeholder="Email" readonly>
+    </div> -->
     <!-- <div class="input-group input-group-lg mb-3">
         <input formControlName="contrasenia" type="text" class="form-control" placeholder="Contraseña">
     </div> -->
@@ -15,25 +15,8 @@
     <div class="input-group input-group-lg mb-3">
         <input formControlName="nombres" type="text" class="form-control" placeholder="Nombres">
     </div>
-    <div class="input-group input-group-lg mb-3">
-        <input formControlName="celular" type="text" class="form-control" placeholder="Celular">
-    </div>
-    <div class="input-group input-group-lg mb-3">
-        <input formControlName="codigo" type="text" class="form-control" placeholder="Codigo">
-    </div>
-    <div class="input-group input-group-lg mb-3">
-        <input formControlName="direccion" type="text" class="form-control" placeholder="Direccion">
-    </div>
-    <div class="input-group input-group-lg mb-3">
-        <input formControlName="fechaNacimiento" type="text" class="form-control" placeholder="Fecha de Nacimiento">
-    </div>
-    <div class="input-group input-group-lg mb-3">
-        <!-- <input formControlName="genero" type="text" class="form-control" placeholder="Genero"> -->
-        <select formControlName="genero" class="form-control" name="" id="">
-            <option value="MASCULINO">Masculino</option>
-            <option value="FEMENINO">Femenino</option>
-        </select>
-    </div>
+
+
     <div class="input-group input-group-lg mb-3">
         <select formControlName="documentoTipo" class="form-control" name="" id="">
             <option value="DNI">DNI</option>
@@ -46,14 +29,26 @@
         <input formControlName="documentoNumero" type="text" class="form-control" placeholder="Numero de Documento">
     </div>
     <div class="input-group input-group-lg mb-3">
-        <input formControlName="banco" type="text" class="form-control" placeholder="Banco">
+        <!-- <input formControlName="genero" type="text" class="form-control" placeholder="Genero"> -->
+        <select formControlName="genero" class="form-control" name="" id="">
+            <option value="MASCULINO">Masculino</option>
+            <option value="FEMENINO">Femenino</option>
+        </select>
     </div>
     <div class="input-group input-group-lg mb-3">
-        <input formControlName="observacion" type="text" class="form-control" placeholder="Observacion">
+        <input formControlName="fechaNacimiento" type="text" class="form-control" placeholder="Fecha de Nacimiento">
     </div>
-    <button  *ngIf="isCreate" class="btn btn-primary" (click)="crearUsuario(usuarioFormGroup.value)"
+    <div class="input-group input-group-lg mb-3">
+        <input formControlName="celular" type="text" class="form-control" placeholder="Celular">
+    </div>
+
+    <div class="input-group input-group-lg mb-3">
+        <input formControlName="direccion" type="text" class="form-control" placeholder="Direccion">
+    </div>
+
+    <button *ngIf="isCreate" class="btn btn-primary" (click)="crearUsuario(usuarioFormGroup.value)"
         [disabled]="usuarioFormGroup.invalid">Registrar</button>
-    <button  *ngIf="!isCreate"  class="btn btn-success" (click)="actualizarUsuario(usuarioFormGroup.value)"
+    <button *ngIf="!isCreate" class="btn btn-success" (click)="actualizarUsuario(usuarioFormGroup.value)"
         [disabled]="usuarioFormGroup.invalid || !usuarioFormGroup.value.id">Actualizar</button>
-    <!-- <button class="btn btn-primary" (click)="crearUsuario()">Registrar</button> -->
+    <button class="btn btn-primary" (click)="validaciones()">VER VALIDACIONES</button>
 </form>

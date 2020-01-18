@@ -8,7 +8,7 @@
     <form [formGroup]="usuarioFormGroup">
 
         <div class="input-group input-group-lg mb-3">
-            <input formControlName="email" type="email" class="form-control" placeholder="Email">
+            <input formControlName="usuario" type="email" class="form-control" placeholder="Usuario" readonly>
         </div>
         <!-- <div class="input-group input-group-lg mb-3">
             <input formControlName="contrasenia" type="text" class="form-control" placeholder="Contraseña">
@@ -25,9 +25,7 @@
         <div class="input-group input-group-lg mb-3">
             <input formControlName="celular" type="text" class="form-control" placeholder="Celular">
         </div>
-        <div class="input-group input-group-lg mb-3">
-            <input formControlName="codigo" type="text" class="form-control" placeholder="Codigo">
-        </div>
+       
         <div class="input-group input-group-lg mb-3">
             <input formControlName="direccion" type="text" class="form-control" placeholder="Direccion">
         </div>
@@ -37,8 +35,8 @@
         <div class="input-group input-group-lg mb-3">
             <!-- <input formControlName="genero" type="text" class="form-control" placeholder="Genero"> -->
             <select formControlName="genero" class="form-control" name="" id="">
-                <option value="MASCULINO">Masculino</option>
-                <option value="FEMENINO">Femenino</option>
+                <option value="MASCULINO">MASCULINO</option>
+                <option value="FEMENINO">FEMENINO</option>
             </select>
         </div>
         <div class="input-group input-group-lg mb-3">
@@ -50,19 +48,18 @@
             <!-- <input formControlName="documentoTipo" type="text" class="form-control" placeholder="Tipo de Documento"> -->
         </div>
         <div class="input-group input-group-lg mb-3">
-            <input formControlName="documentoNumero" type="text" class="form-control" placeholder="Numero de Documento">
+            <input formControlName="documentoNumero" type="text" class="form-control" placeholder="Numero de Documento" readonly>
         </div>
-        <div class="input-group input-group-lg mb-3">
+        <!-- <div class="input-group input-group-lg mb-3">
             <input formControlName="banco" type="text" class="form-control" placeholder="Banco">
-        </div>
+        </div> -->
         <div class="input-group input-group-lg mb-3">
             <input formControlName="observacion" type="text" class="form-control" placeholder="Observacion">
         </div>
         <button  *ngIf="isCreate" class="btn btn-primary" (click)="crearUsuario(usuarioFormGroup.value)"
             [disabled]="usuarioFormGroup.invalid">Registrar</button>
         <button  *ngIf="!isCreate"  class="btn btn-success" (click)="actualizarUsuario(usuarioFormGroup.value)"
-            [disabled]="usuarioFormGroup.invalid || !usuarioFormGroup.value.id">Actualizar</button>
-        <!-- <button class="btn btn-primary" (click)="crearUsuario()">Registrar</button> -->
+            [disabled]="usuarioFormGroup.invalid">Actualizar</button>
     </form>
 </div>
 <div class="modal-footer">

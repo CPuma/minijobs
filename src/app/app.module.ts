@@ -6,13 +6,13 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 
 // MODULOS
-import { HomeModule } from './modules/home/home.module';
+// import { HomeModule } from './modules/home/home.module';
 
 // SAHRED
-import { HeaderComponent } from './shared/header/header.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { LoaderComponent } from './shared/components/loader/loader.component';
-import { CapitalizerPipe } from './shared/pipes/capitalizer.pipe';
+// import { HeaderComponent } from './shared/header/header.component';
+// import { FooterComponent } from './shared/footer/footer.component';
+// import { LoaderComponent } from './shared/components/loader/loader.component';
+// import { CapitalizerPipe } from './shared/pipes/capitalizer.pipe';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -30,7 +30,6 @@ import { AuthGuard } from './core/guards/auth.guard';
 @NgModule({
 	declarations: [
 		AppComponent,
-
 	],
 	imports: [
 		BrowserModule,
@@ -52,6 +51,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 	],
 	
 	providers: [ DatePipe, AuthGuard ],
+	// providers: [ DatePipe ],
 	bootstrap: [ AppComponent ]
 })
 export class AppModule {}

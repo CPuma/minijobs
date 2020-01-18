@@ -20,7 +20,7 @@ export const AuthenticationRouting: Routes = [
 			},
 			{
 				path: 'register-profile',
-				// canActivate:[AuthGuard],
+				canActivate:[AuthGuard],
 				component: RegisterProfileComponent
 			},
 			{

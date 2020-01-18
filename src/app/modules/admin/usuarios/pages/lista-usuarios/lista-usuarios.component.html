@@ -5,10 +5,10 @@
         <button class="btn btn-lg btn-outline-primary" (click)="open('formUsuario')">Crear Usuario</button>
     </div> -->
 
-    <!-- <div class="mr-auto p-2 bd-highlight">
+    <div class="mr-auto p-2 bd-highlight">
         <input type="text" (change)="buscarUsuario($event.target.value)" class="form-control mb-2" id="inlineFormInput"
-            placeholder="Busca por ID">
-    </div> -->
+            placeholder="Busca por Documento">
+    </div>
     <div class="p-2 bd-highlight">
         <select class="custom-select" (change)="listartUsuarios($event.target.value)" id="">
             <option selected>Ordenar por ...</option>
@@ -38,9 +38,9 @@
                 <tbody>
 
                     <tr *ngFor="let usuario of usuarios; let i = index">
-                        <th scope="row">{{i}}</th>
-                        <td>{{usuario.email}}</td>
-                        <td>{{usuario.apellidoPaterno}} {{usuario.apellidoPaterno}}</td>
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{usuario.usuario}}</td>
+                        <td>{{usuario.apellidoPaterno}} {{usuario.apellidoMaterno}}</td>
                         <td>{{usuario.nombres}}</td>
                         <td>{{usuario.celular}}</td>
                         <td>{{usuario.fechaCreacion}}</td>

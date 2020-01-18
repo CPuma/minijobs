@@ -7,6 +7,7 @@ import { CapitalizerPipe } from './pipes/capitalizer.pipe';
 import { TimePipe } from './pipes/time.pipe';
 import { AppRoutingModule } from '../app-routing.module';
 import { RouterModule } from '@angular/router';
+import { UpperCaseCustomPipe } from './pipes/upper-case-custom.pipe';
 
 @NgModule({
 	declarations: [
@@ -15,12 +16,16 @@ import { RouterModule } from '@angular/router';
 		FooterComponent, // General Footer
 		LoaderComponent,
 		CapitalizerPipe,
-		TimePipe
+		TimePipe,
+		UpperCaseCustomPipe
 	],
 	imports: [ CommonModule, RouterModule ],
 	exports: [
 		HeaderComponent, // General HEader
 		FooterComponent
+	],
+	providers:[
+		
 	]
 })
 export class SharedModule {}

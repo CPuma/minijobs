@@ -14,6 +14,7 @@ import { AuthGuard } from 'src/app/core/guards/auth.guard';
 @NgModule({
   declarations: [HeaderAdminComponent, FooterAdminComponent, AdminComponent, SidebarAdminComponent],
   imports: [
+    RouterModule,
     CommonModule,
     RouterModule.forChild(AdminRouting),
 

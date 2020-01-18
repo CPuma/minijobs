@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Inject, LOCALE_ID } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsuariosFirebaseService } from 'src/app/core/services/usuarios-firebase.service';
 import { UsuarioInterface } from 'src/app/core/models/usuario';
+import { UpperCaseCustomPipe } from 'src/app/shared/pipes/upper-case-custom.pipe';
 
 @Component({
 	selector: 'app-modal-crear',
@@ -12,7 +13,7 @@ import { UsuarioInterface } from 'src/app/core/models/usuario';
 export class ModalCrearComponent implements OnInit {
 	@Input() usuario;
 	titulo: String;
-	isCreate :boolean;
+	isCreate: boolean;
 	today = new Date().toLocaleDateString();
 
 	usuarioFormGroup: FormGroup;
@@ -21,6 +22,7 @@ export class ModalCrearComponent implements OnInit {
 		public activeModal: NgbActiveModal,
 		private usuarioFireService: UsuariosFirebaseService,
 		private formBuilder: FormBuilder,
+		private upperCasePipe: UpperCaseCustomPipe
 	) {}
 
 	ngOnInit(): void {
@@ -32,23 +34,22 @@ export class ModalCrearComponent implements OnInit {
 		if (this.usuario) {
 			this.editarUsuario(this.usuario);
 			this.titulo = 'Editando Usuario!';
-			this.isCreate=false
+			this.isCreate = false;
 		} else {
 			this.titulo = 'Creando Usuario!';
-			this.isCreate=true
+			this.isCreate = true;
 		}
 	}
 
 	intanciarUsuarioForm() {
 		this.usuarioFormGroup = this.formBuilder.group({
 			id: [ null, [] ],
-			email: [ '', [ Validators.required ] ],
+			usuario: [ '', [ Validators.required ] ],
 			// contrasenia: [ '', [ Validators.required ] ],
 			apellidoPaterno: [ '', [ Validators.required ] ],
 			apellidoMaterno: [ '', [ Validators.required ] ],
 			nombres: [ '', [ Validators.required ] ],
 			celular: [ '', [ Validators.required ] ],
-			codigo: [ '', [] ],
 			direccion: [ '', [ Validators.required ] ],
 			estado: [ 'INACTIVO', [ Validators.required ] ],
 			fechaNacimiento: [ this.today, [ Validators.required ] ],
@@ -56,22 +57,27 @@ export class ModalCrearComponent implements OnInit {
 			genero: [ 'MASCULINO', [ Validators.required ] ],
 			documentoTipo: [ 'DNI', [ Validators.required ] ],
 			documentoNumero: [ '', [ Validators.required ] ],
-			banco: [ '', [] ],
-			observacion: [ '', [] ],
-			numeroCuenta: [ '', [] ]
+			// banco: [ '', [] ],
+			observacion: [ '', [] ]
+			// numeroCuenta: [ '', [] ]
 		});
 	}
 
 	editarUsuario(usuario) {
+		console.log('Usuario para editar ', usuario);
 		this.usuarioFormGroup.patchValue(usuario);
 	}
 
-	crearUsuario(usuario: UsuarioInterface) {
+	crearUsuario(usuario: UsuarioInterface): void {
+		usuario = this.upperCasePipe.transform(usuario);
 		this.usuarioFireService.crearUsuario(usuario);
 		this.activeModal.close('Ok click');
 	}
 
-	actualizarUsuario(usuario: UsuarioInterface) {
+	actualizarUsuario(usuario: UsuarioInterface): void {
+		console.log("Usuario antes de ",usuario);
+		usuario = this.upperCasePipe.transform(usuario);
+		console.log("Usuario Parseado",usuario);
 		this.usuarioFireService.actualizarUsuario(usuario);
 		this.activeModal.close('Ok click');
 	}

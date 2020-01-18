@@ -20,35 +20,44 @@ export class LoginComponent implements OnInit {
 		});
 	}
 
-	login() {
+	async login(): Promise<void> {
 		let { email, password } = this.formLogin.value;
-		this.authService
-			.loginEmailUser(email, password)
-			.then((userCredential) => {
-				this.router.navigateByUrl('/admin');
-				console.log;
-			})
-			.catch((error) => console.error(error));
+		let userCredential = await this.authService.loginEmailUser(email, password);
+		return this.confirmUsuarioProfile(userCredential);
+	}
+
+	async loginWithGoogle(): Promise<void> {
+		try {
+			let userCredential = await this.authService.loginGoogleUser();
+			return this.confirmUsuarioProfile(userCredential);
+		} catch (error) {
+			console.error(error);
 		}
-		loginWithGoogle() {
-			this.authService
-			.loginGoogleUser()
-			.then((userCredential) => {
-				// this.router.navigateByUrl('/auth/register-profile');
-				console.log('GOOGLE Credential ::: ', userCredential);
-				this.authService.setUserData(userCredential.user.uid);
-				this.router.navigateByUrl('/admin');
-			})
-			.catch((error) => console.error(error));
+	}
+
+	async loginWithFacebook(): Promise<void> {
+		try {
+			let userCredential = await this.authService.loginFacebookUser();
+			return this.confirmUsuarioProfile(userCredential);
+		} catch (error) {
+			console.error(error);
 		}
-		
-		loginWithFacebook() {
-			this.authService
-			.loginFacebookUser()
-			.then((userCredential) => {
+	}
+
+	async confirmUsuarioProfile(userCredential): Promise<void> {
+		try {
+			let profile = await this.authService.getUsuarioProfile(userCredential.user.email); // email como usuario
+			console.log('PROOOOFFFFILE', profile);
+			if (!!profile && profile.isComplete) {
+				console.log('COmPLETO');
+				this.authService.setUserData(profile.usuario);
 				this.router.navigateByUrl('/admin');
-				console.log('GOOGLE Credential ::: ', userCredential);
-			})
-			.catch((error) => console.error(error));
+			} else {
+				console.log('InCOmPLETO');
+				this.authService.setUserData(profile.usuario);
+				console.log('login usuario,', profile.usuario);
+				this.router.navigate([ '/auth/register-profile' ]);
+			}
+		} catch (error) {}
 	}
 }

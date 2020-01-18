@@ -1,36 +1,35 @@
-export enum ESexo {
-	Masculino = 'M',
-	Femenino = 'F'
-}
+// export enum ESexo {
+// 	MASCULINO = 'M',
+// 	FEMENINO = 'F'
+// }
 // export enum EEstadoUsuario {
 // 	Pendiente = 0,
 // 	Activo = 1,
 // 	Suspendido = 2
 // }
 export enum EDocumentoTipo {
-	Dni = 'DNI',
-	passaporte = 'PASSPORTE',
-	carnet_extranjeria = 'CARNET DE EXTRANJERIA'
+	DNI = 'DNI',
+	PASAPORTE = 'PASAPORTE',
+	CARNET_EXTRANJERIA = 'CARNET DE EXTRANJERIA'
 }
 export interface Roles{
 	admin?:boolean;
 	afiliador?:boolean;
 	socioJob?:boolean;
-	usuario?:boolean;
+	usuario?:boolean;	// TRUE
 }
 
 export interface UsuarioInterface {
 	id?: string; // se toma del uid -- del  inicio de sesion por  al registrar
 	
-	// usuario?:string;	// YA NO VA
-	// contrasenia?: string;	// YA NO VA
-	// codigo?: string;	// No se para que es esto ????????
+	usuario?:string;	// NO DEBERIA IR
+	contrasenia?: string;	// YA DEBERIA IR
 
-	apellidoMaterno: string;
 	apellidoPaterno: string;
+	apellidoMaterno: string;
 	nombres: string;
 
-	email: string;
+	// email: string;  // APARENTEMENTE YA NO
 	celular: string;
 	direccion: string;
 
@@ -39,7 +38,7 @@ export interface UsuarioInterface {
 
 	fechaNacimiento: Date;
 	fechaCreacion: Date;
-	genero: ESexo; // M masculino, F Femenino (SOLO UNA LETRA)
+	genero: string; // MASCULINO, FEMENINO
 	documentoTipo: EDocumentoTipo; //(1)DNI , (2)PASSPORTE ,(3)CARNET DE EXTRANJERIA  deberia ser con INT
 	documentoNumero: string;
 
@@ -48,5 +47,5 @@ export interface UsuarioInterface {
 	numeroCuenta?: string;
 
 	roles:Roles		// array { admin:false, afiliador:true, usuario:true}
-	isProfileComplete:boolean;// si se registra por google pero aun no completa sus DATOS... debera redireccionarlo para que termine de registrarse bien
+
 }
