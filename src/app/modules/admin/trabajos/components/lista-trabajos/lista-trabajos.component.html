@@ -43,10 +43,12 @@
                         <td>{{trabajo.idMultiJob}}</td>
                         <td>{{trabajo.estado}}</td>
                         <td>
-                            <!-- <button class="btn btn-danger" (click)="open('formUsuario',trabajo)">Editar</button> -->
-                            <button *ngIf="trabajo.estado && trabajo.estado.toLowerCase() === 'inactivo' " class="btn btn-success"
+                            <a class="btn btn-danger" [routerLink]="[trabajo.idTrabajo,'postulantes']">Postulantes</a>
+                            <button *ngIf="trabajo.estado && trabajo.estado.toLowerCase() === 'inactivo' "
+                                class="btn btn-success"
                                 (click)="open('cambiarEstado',trabajo, 'activo')">Activar</button>
-                            <button *ngIf="trabajo.estado && trabajo.estado.toLowerCase() ==='activo'" class="btn btn-secondary"
+                            <button *ngIf="trabajo.estado && trabajo.estado.toLowerCase() ==='activo'"
+                                class="btn btn-secondary"
                                 (click)="open('cambiarEstado',trabajo, 'inactivo')">Inhabilitar</button>
                         </td>
 

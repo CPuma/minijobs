@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ModalActivarComponent } from '../../components/modal-activar/modal-activar.component';
+import { ModalActivarComponent } from '../modal-activar/modal-activar.component';
 import { TrabajoInterface } from 'src/app/core/models/trabajo';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TrabajosFirebaseService } from 'src/app/core/services/trabajos-firebase.service';

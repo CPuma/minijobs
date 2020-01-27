@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { PostulacionInterface } from '../models/postulacion';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
+import { Observable } from 'rxjs';
+import { NgbPaginationNext } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable({
 	providedIn: 'root'
@@ -14,7 +16,7 @@ export class PostulacionesService {
 	listarPostulacionesxTrabajo(idTrabajo: string): Promise<PostulacionInterface[] | any> {
 		return new Promise((resolve, reject) => {
 			try {
-				let postulaciones = [];
+				let postulaciones: PostulacionInterface[] = [];
 				let postulacionesRef = this.db.database.ref(this.dbPath);
 				postulacionesRef.orderByChild('idTrabajo').equalTo(idTrabajo).on('value', (snapshot) => {
 					snapshot.forEach((data) => {
@@ -31,6 +33,7 @@ export class PostulacionesService {
 			}
 		});
 	}
+	
 	listarPostulacionesxMultiJob(idMultiJob: string): Promise<PostulacionInterface[] | any> {
 		return new Promise((resolve, reject) => {
 			try {

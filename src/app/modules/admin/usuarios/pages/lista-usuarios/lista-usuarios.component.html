@@ -48,10 +48,13 @@
                         <td>{{usuario.documentoNumero}}</td>
                         <td>{{usuario.estado}}</td>
                         <td>
+                            <button class="btn btn-danger" (click)="open('usuariosDetalles',usuario)">Calificaciones</button>
                             <button class="btn btn-danger" (click)="open('formUsuario',usuario)">Editar</button>
-                            <button *ngIf="usuario.estado && usuario.estado.toLowerCase() === 'inactivo' " class="btn btn-success"
+                            <button *ngIf="usuario.estado && usuario.estado.toLowerCase() === 'inactivo' "
+                                class="btn btn-success"
                                 (click)="open('cambiarEstado',usuario, 'activo')">Activar</button>
-                            <button *ngIf="usuario.estado && usuario.estado.toLowerCase() ==='activo'" class="btn btn-secondary"
+                            <button *ngIf="usuario.estado && usuario.estado.toLowerCase() ==='activo'"
+                                class="btn btn-secondary"
                                 (click)="open('cambiarEstado',usuario, 'inactivo')">Inhabilitar</button>
                         </td>
 

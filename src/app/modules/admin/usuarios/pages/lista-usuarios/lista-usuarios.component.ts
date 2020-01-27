@@ -6,10 +6,12 @@ import { UsuariosFirebaseService } from 'src/app/core/services/usuarios-firebase
 import { UsuarioInterface } from 'src/app/core/models/usuario';
 
 import { map, filter } from 'rxjs/operators';
+import { ModalUsuarioDetallesComponent } from '../../components/modal-usuario-detalles/modal-usuario-detalles.component';
 
 const MODALS = {
 	formUsuario: ModalCrearComponent,
-	cambiarEstado: ModalActivarComponent
+	cambiarEstado: ModalActivarComponent,
+	usuariosDetalles:ModalUsuarioDetallesComponent
 };
 
 @Component({
@@ -38,8 +40,8 @@ export class ListaUsuariosComponent implements OnInit {
 				console.log(this.usuarios);
 			});
 	}
-	buscarUsuario(dni) {
-		this.usuarioFireService.buscarUsuario(dni).then((usuario) => (this.usuarios = usuario)).catch((error) => {
+	buscarUsuario(documentoNumero) {
+		this.usuarioFireService.buscarUsuario(documentoNumero).then((usuario) => (this.usuarios = usuario)).catch((error) => {
 			console.log(error);
 			return [];
 		});

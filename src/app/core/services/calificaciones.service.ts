@@ -38,17 +38,20 @@ export class CalificacionesService {
 				let promedio = 0;
 				let calificacionesRef = this.db.database.ref(this.dbPath);
 				calificacionesRef.orderByChild('idMultiJob').equalTo(idMultiJob).on('value', (snapshot) => {
-					snapshot.forEach((data) => {
-						let calificacion;
-						calificacion = data.val();
-						delete calificacion['calificacionSocioJob'];
-						delete calificacion['idMultiJob'];
-						promedio += calificacion['calificacionMultiJob'];
-						calificaciones.push(calificacion);
-					});
-					promedio = promedio / calificaciones.length;
-					calificaciones.push(promedio);
-					resolve(calificaciones);
+					if (snapshot.numChildren()) {
+						console.log(snapshot.numChildren());
+						snapshot.forEach((data) => {
+							let calificacion;
+							calificacion = data.val();
+							delete calificacion['calificacionSocioJob'];
+							delete calificacion['idMultiJob'];
+							calificaciones.push(calificacion);
+						});
+
+						resolve(calificaciones);
+					} else {
+						resolve([]);
+					}
 				});
 			} catch (error) {
 				console.error('SERVICE CALIFICACION:::');
@@ -56,24 +59,25 @@ export class CalificacionesService {
 			}
 		});
 	}
-	listarCalificacionesxSocioJob(idSocioJob: string): Promise<CalificacionInterface[] | any> {
+	listarCalificacionesxSocioJob(idSocioJob: string): Promise<CalificacionInterface[]> {
 		return new Promise((resolve, reject) => {
 			try {
 				let calificaciones = [];
-				let promedio = 0;
 				let calificacionesRef = this.db.database.ref(this.dbPath);
 				calificacionesRef.orderByChild('idSocioJob').equalTo(idSocioJob).on('value', (snapshot) => {
-					snapshot.forEach((data) => {
-						let calificacion;
-						calificacion = data.val();
-						delete calificacion['calificacionMultiJob'];
-						delete calificacion['idSocioJob'];
-						promedio += calificacion['calificacionSocioJob'];
-						calificaciones.push(calificacion);
-					});
-					promedio = promedio / calificaciones.length;
-					calificaciones.push(promedio);
-					resolve(calificaciones);
+					if (snapshot.numChildren()) {
+						console.log(snapshot.numChildren());
+						snapshot.forEach((data) => {
+							let calificacion;
+							calificacion = data.val();
+							delete calificacion['calificacionMultiJob'];
+							delete calificacion['idSocioJob'];
+							calificaciones.push(calificacion);
+						});
+						resolve(calificaciones);
+					} else {
+						resolve([]);
+					}
 				});
 			} catch (error) {
 				console.error('SERVICE CALIFICACION:::');

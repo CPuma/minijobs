@@ -7,15 +7,17 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UpperCaseCustomPipe } from 'src/app/shared/pipes/upper-case-custom.pipe';
+import { ModalUsuarioDetallesComponent } from './components/modal-usuario-detalles/modal-usuario-detalles.component';
 
 @NgModule({
-	declarations: [ ListaUsuariosComponent, ModalCrearComponent, ModalActivarComponent ],
+	declarations: [ ListaUsuariosComponent, ModalCrearComponent, ModalActivarComponent, ModalUsuarioDetallesComponent ],
 	imports: [ CommonModule, NgbModule, ReactiveFormsModule, SharedModule ],
 	exports: [
-		ListaUsuariosComponent
+		// ListaUsuariosComponent,
+		ModalUsuarioDetallesComponent
 	],
 	bootstrap: [ ListaUsuariosComponent ],
-	entryComponents: [ ModalCrearComponent, ModalActivarComponent ],
+	entryComponents: [ ModalCrearComponent, ModalActivarComponent, ModalUsuarioDetallesComponent ],
 	providers: [ UpperCaseCustomPipe ]
 })
 export class UsuariosModule {}

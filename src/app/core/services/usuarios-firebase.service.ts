@@ -16,20 +16,20 @@ export class UsuariosFirebaseService {
 	constructor(private db: AngularFireDatabase, private authService: AuthenticationService) {
 		this.instanciarUsuarioREF();
 	}
-	instanciarUsuarioREF(orderby: string = 'fechaCreacion', dni?: string) {
-		// if (dni) {
-		// 	this.usuariosRef = this.db.list(this.dbPath, (ref) => ref.orderByChild('dni').equalTo(dni));
+	instanciarUsuarioREF(orderby: string = 'fechaCreacion', documentoNumero?: string) {
+		// if (documentoNumero) {
+		// 	this.usuariosRef = this.db.list(this.dbPath, (ref) => ref.orderByChild('documentoNumero').equalTo(documentoNumero));
 		// } else {
 		this.usuariosRef = this.db.list(this.dbPath, (ref) => ref.orderByChild(orderby));
 		// }
 	}
 
-	buscarUsuario(dni: string): Promise<UsuarioInterface | any> {
+	buscarUsuario(documentoNumero: string): Promise<UsuarioInterface | any> {
 		return new Promise((resolve, reject) => {
 			try {
 				let usuarios = [];
 				let userRef = this.db.database.ref(this.dbPath);
-				userRef.orderByChild('documentoNumero').equalTo(dni).on('value', (snapshot) => {
+				userRef.orderByChild('documentoNumero').equalTo(documentoNumero).on('value', (snapshot) => {
 					snapshot.forEach((data) => {
 						let usu;
 						usu = data.val();

@@ -1,0 +1,56 @@
+<div class="d-flex bd-highlight my-3">
+
+    <!-- <div class="mr-auto p-2 bd-highlight">
+        <input type="text" (change)="buscarPostulante($event.target.value)" class="form-control mb-2"
+            id="inlineFormInput" placeholder="Busca por Socio">
+    </div> -->
+    <!-- <div class="p-2 bd-highlight">
+        <select class="custom-select" (change)="listarPostulantes($event.target.value)" id="">
+            <option selected>Ordenar por ...</option>
+            <option value="fechaCreacionTrabajo">Ultimo agregado</option>
+            <option value="estado">Estado</option>
+        </select>
+    </div> -->
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-group">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">MultiJob</th>
+                        <th scope="col">Documento de Identidad</th>
+                        <th scope="col">Fecha de Postulacion</th>
+                        <th scope="col">Estado</th>
+
+                        <th scope="col">## Operaciones ## </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let postulante of postulaciones; let i = index">
+                        <td scope="row">{{i+1}}</td>
+
+                        <td *ngIf="postulante.multiJobs">{{postulante.multiJobs.apellidoPaterno}} 
+                            {{postulante.multiJobs.apellidoMaterno}}  {{postulante.multiJobs.nombres}}</td>
+                        <td>{{postulante.idMultiJob}}</td>
+                        <td>{{postulante.fechaPostulacion}}</td>
+                        <td>{{postulante.estado}}</td>
+                        <td>
+                            <button *ngIf="postulante.estado && postulante.estado.toLowerCase() === 'activo' "
+                                class="btn btn-success"
+                                (click)="open('detalles',postulante.idMultiJobs)">Detalles</button>
+                        </td>
+
+
+
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
