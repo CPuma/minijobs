@@ -13,10 +13,9 @@ import { UpperCaseCustomPipe } from 'src/app/shared/pipes/upper-case-custom.pipe
 	imports: [ CommonModule, NgbModule, ReactiveFormsModule, SharedModule ],
 	exports: [
 		ListaUsuariosComponent
-		// ListaUsuariosComponent
 	],
 	bootstrap: [ ListaUsuariosComponent ],
 	entryComponents: [ ModalCrearComponent, ModalActivarComponent ],
-	providers: [ UpperCaseCustomPipe]
+	providers: [ UpperCaseCustomPipe ]
 })
 export class UsuariosModule {}

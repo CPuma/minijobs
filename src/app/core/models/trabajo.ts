@@ -1,40 +1,27 @@
-export enum ETipoTrabajo {
-	Reparacion = 0,
-	Limpieza = 1,
-	Pintura = 2
-}
-export enum EEstadoTrabajo {
-	Pendiente = 0,
-	Coordinado = 1,
-	Completado = 2,
-	Cancelado = 3
-}
-export interface Trabajo {
-	key?: String;
 
-	'codigo': String;
-	'titulo': String;
+export interface TrabajoInterface {
+	// key?: string;
+	idTrabajo : string,
+	
+	cobranzaMiniJob : number,
+    cobranzaPasarela : number,
+    direccion : string,
+    distrito : string,
+    especificacion : string,
+    estado : string, //"COMPLETADO",
+    fechaCreacionTrabajo : string,
+    fechaTrabajo : string,
+    horaCreacionTrabajo : string,
+    horaTrabajo : string,
+    idMultiJob : string,
+    idSocioJob : string,
+    pagoEditado : number,
+    pagoMultiJob : number,
+    pagoSocioJob : number,
+    primerCalificador : string ,//"72935140",
+    tipoTrabajo : string,
+    titulo : string
 
-	'codigoMultiJob': String;
-	'codigoSocioJob': String; // numeros
-	'estado': EEstadoTrabajo; //"coordinado",
-
-	'distrito': String; // DEBERIAMOS DEFINIRLOSSS ... TAMBIEN PROVINCIA por COD UBIGEO
-	'direccion': String;
-
-	'fechaCreacion': Date;
-
-	'tipoTrabajo': ETipoTrabajo; // Deberia ser Number y nosotros definir los tipos
-	'especificacion': String;
-	'fecharabajo': Date; // fecha y hora juntos DATETIME
-	//   "horaTrabajo" : "18:00",
-
-	'cobranzaMiniJobs': Number;
-	'cobranzaCulqi': Number;
-
-	'pagoEditado': Number;
-	'pagoMultijob': Number;
-	'pagoSocioJob': Number;
 }
 
 // EJEMPLO

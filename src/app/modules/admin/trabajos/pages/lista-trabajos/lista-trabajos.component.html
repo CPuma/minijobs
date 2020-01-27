@@ -1,0 +1,63 @@
+<div class="d-flex bd-highlight my-3">
+
+    <div class="mr-auto p-2 bd-highlight">
+        <input type="text" (change)="buscarTrabajo($event.target.value)" class="form-control mb-2" id="inlineFormInput"
+            placeholder="Busca por Socio">
+    </div>
+    <div class="p-2 bd-highlight">
+        <select class="custom-select" (change)="listarTrabajos($event.target.value)" id="">
+            <option selected>Ordenar por ...</option>
+            <option value="fechaCreacionTrabajo">Ultimo agregado</option>
+            <option value="estado">Estado</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-group">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">SocioJob</th>
+                        <th scope="col">titulo</th>
+                        <th scope="col">Tipo</th>
+                        <th scope="col">Creacion</th>
+                        <th scope="col">Fecha de Trabajo</th>
+                        <th scope="col">Hora de Trabajo</th>
+                        <th scope="col">MultiJob</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">## Operaciones ## </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let trabajo of trabajos; let i = index">
+                        <th scope="row">{{i+1}}</th>
+                        <td>{{trabajo.idSocioJob}}</td>
+                        <td>{{trabajo.titulo}}</td>
+                        <td>{{trabajo.tipoTrabajo}}</td>
+                        <td>{{trabajo.fechaCreacionTrabajo}}</td>
+                        <td>{{trabajo.fechaTrabajo}}</td>
+                        <td>{{trabajo.horaTrabajo}}</td>
+                        <td>{{trabajo.idMultiJob}}</td>
+                        <td>{{trabajo.estado}}</td>
+                        <td>
+                            <!-- <button class="btn btn-danger" (click)="open('formUsuario',trabajo)">Editar</button> -->
+                            <button *ngIf="trabajo.estado && trabajo.estado.toLowerCase() === 'inactivo' " class="btn btn-success"
+                                (click)="open('cambiarEstado',trabajo, 'activo')">Activar</button>
+                            <button *ngIf="trabajo.estado && trabajo.estado.toLowerCase() ==='activo'" class="btn btn-secondary"
+                                (click)="open('cambiarEstado',trabajo, 'inactivo')">Inhabilitar</button>
+                        </td>
+
+
+
+                    </tr>
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>

@@ -8,6 +8,8 @@ import { UsuariosModule } from './usuarios/usuarios.module';
 import { AdminComponent } from './admin.component';
 import { SidebarAdminComponent } from './shared/sidebar-admin/sidebar-admin.component';
 import { AuthGuard } from 'src/app/core/guards/auth.guard';
+import { TrabajosModule } from './trabajos/trabajos.module';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 
 
@@ -18,7 +20,9 @@ import { AuthGuard } from 'src/app/core/guards/auth.guard';
     CommonModule,
     RouterModule.forChild(AdminRouting),
 
-    UsuariosModule
+    UsuariosModule,
+    TrabajosModule,
+    DashboardModule
   ],
   providers:[
     AuthGuard
