@@ -11,7 +11,7 @@ import { ModalUsuarioDetallesComponent } from '../../components/modal-usuario-de
 const MODALS = {
 	formUsuario: ModalCrearComponent,
 	cambiarEstado: ModalActivarComponent,
-	usuariosDetalles:ModalUsuarioDetallesComponent
+	usuariosDetalles: ModalUsuarioDetallesComponent
 };
 
 @Component({
@@ -41,10 +41,17 @@ export class ListaUsuariosComponent implements OnInit {
 			});
 	}
 	buscarUsuario(documentoNumero) {
-		this.usuarioFireService.buscarUsuario(documentoNumero).then((usuario) => (this.usuarios = usuario)).catch((error) => {
-			console.log(error);
-			return [];
-		});
+		if (documentoNumero) {
+			this.usuarioFireService
+				.buscarUsuario(documentoNumero)
+				.then((usuario) => (this.usuarios = usuario))
+				.catch((error) => {
+					console.log(error);
+					return [];
+				});
+		} else {
+			this.listartUsuarios();
+		}
 	}
 
 	open(nameModal: string, usuario?, estado?: string) {

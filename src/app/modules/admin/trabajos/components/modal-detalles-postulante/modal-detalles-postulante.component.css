@@ -2,12 +2,47 @@
 	padding: 25px 10px 0 40px;
 }
 .modal-header h4 {
-	font-size: 2.2rem;
-
+	font-size: 2.1rem;
 }
 .modal-body {
 	padding: 0 25px;
 }
+ul.detalles-postulante {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: auto;
+	padding: 0;
+}
+ul.detalles-postulante li {
+	display: block;
+	font-size: 1.8rem;
+	margin: 5px 0;
+}
+ul.detalles-postulante li span {
+	width: 80px;
+	font-size: 1.5rem;
+	display: inline-block;
+	color: dimgrey;
+}
+
+.star {
+	position: relative;
+	display: inline-block;
+	font-size: 3rem;
+	color: #d3d3d3;
+}
+.full {
+	color: #ff9800;
+}
+.half {
+	position: absolute;
+	display: inline-block;
+	overflow: hidden;
+	color: red;
+}
+
+/* ======= COPIA DE DETALLES USUARIOS */
 .rating-container {
 	font-family: Arial;
 	margin: 0 auto; /* Center website */
@@ -15,7 +50,7 @@
 	padding: 20px;
 }
 .heading-rating {
-	font-size: 1.5rem;
+	font-size: 25px;
 	margin-right: 25px;
 }
 .resumen {
@@ -57,33 +92,3 @@
 	display: table;
 	clear: both;
 }
-
-
-
-/* Responsive layout - make the columns stack on top of each other instead of next to each other */
-@media (max-width: 400px) {
-	.side,
-	.middle {
-		width: 100%;
-	}
-	.right {
-		display: none;
-	}
-}
-
-/* BOOOSTRAPPP */
-.star {
-	position: relative;
-	display: inline-block;
-	font-size: 3rem;
-	color: #d3d3d3;
-  }
-  .full {
-	color: #ff9800;
-  }
-  .half {
-	position: absolute;
-	display: inline-block;
-	overflow: hidden;
-	color: red;
-  }

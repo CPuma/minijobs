@@ -48,7 +48,7 @@
                         <td>{{usuario.documentoNumero}}</td>
                         <td>{{usuario.estado}}</td>
                         <td>
-                            <button class="btn btn-danger" (click)="open('usuariosDetalles',usuario)">Calificaciones</button>
+                            <button class="btn btn-warning" (click)="open('usuariosDetalles',usuario)">&#10030;&#10030;&#10030;</button>
                             <button class="btn btn-danger" (click)="open('formUsuario',usuario)">Editar</button>
                             <button *ngIf="usuario.estado && usuario.estado.toLowerCase() === 'inactivo' "
                                 class="btn btn-success"

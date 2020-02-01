@@ -6,6 +6,14 @@ import { map, mergeMap } from 'rxjs/operators';
 import { UsuariosFirebaseService } from 'src/app/core/services/usuarios-firebase.service';
 import { positionElements } from '@ng-bootstrap/ng-bootstrap/util/positioning';
 import { resolve } from 'url';
+import { ModalCrearComponent } from '../../../usuarios/components/modal-crear/modal-crear.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalUsuarioDetallesComponent } from '../../../usuarios/components/modal-usuario-detalles/modal-usuario-detalles.component';
+import { ModalDetallesPostulanteComponent } from '../modal-detalles-postulante/modal-detalles-postulante.component';
+
+const MODALS = {
+	detallesPostulante: ModalDetallesPostulanteComponent
+};
 
 @Component({
 	selector: 'app-lista-postulantes',
@@ -16,7 +24,9 @@ export class ListaPostulantesComponent implements OnInit {
 	closeResult: string;
 	postulaciones: PostulacionInterface[] | any = [];
 	idTrabajo: string;
+	titulo: string;
 	constructor(
+		private modalService: NgbModal,
 		private postulacionesService: PostulacionesService,
 		private router: Router,
 		private route: ActivatedRoute,
@@ -24,6 +34,11 @@ export class ListaPostulantesComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
+		this.route.queryParams.subscribe((querys) => {
+			this.titulo = querys['titulo'];
+			console.log(this.titulo);
+		});
+
 		this.route.params.subscribe(
 			(params) => {
 				this.idTrabajo = params['idTrabajo'];
@@ -39,18 +54,6 @@ export class ListaPostulantesComponent implements OnInit {
 		);
 	}
 
-	// listarPostulantes(idTrabajo: string): PostulacionInterface[] | any {
-	// 	this.postulacionesService
-	// 		.listarPostulacionesxTrabajo(idTrabajo)
-	// 		.then((postulaciones) => {
-	// 			console.log(this.postulaciones);
-	// 			this.postulaciones = postulaciones;
-	// 		})
-	// 		.catch((error) => {
-	// 			this.postulaciones = [];
-	// 			console.error('LISTAR POSTULANTES', error);
-	// 		});
-	// }
 	listarPostulantes(idTrabajo: string) {
 		this.postulacionesService.listarPostulacionesxTrabajo(idTrabajo).then((postulaciones) => {
 			postulaciones.forEach(async (postu) => {
@@ -61,31 +64,6 @@ export class ListaPostulantesComponent implements OnInit {
 			this.postulaciones = postulaciones;
 		});
 	}
-	// listarPostulantes(idTrabajo: string): PostulacionInterface[] | any {
-	// 	return this.postulacionesService
-	// 		.listarPostulacionesxTrabajo(idTrabajo)
-	// 		.pipe(
-	// 			mergeMap((postulaciones) =>
-	// 				postulaciones.map(async (postulante) => {
-	// 					let post = await this.usuarioServerice
-	// 						.buscarUsuario(postulante.idMultiJob)
-	// 						.then((usuarios) => usuarios[0])
-	// 						.catch((error) => []);
-	// 					postulante.push(post);
-	// 					return postulante;
-	// 				})
-	// 			)
-	// 		)
-	// 		.subscribe(
-	// 			(postulaciones: Promise<any>) => {
-	// 				console.log(postulaciones.toPromise());
-	// 			},
-	// 			(error) => {
-	// 				this.postulaciones = [];
-	// 				console.error('LISTAR POSTULANTES', error);
-	// 			}
-	// 		);
-	// }
 
 	// buscarPostulante(idMultijob) {
 	// 	this.postulacionesService
@@ -95,6 +73,10 @@ export class ListaPostulantesComponent implements OnInit {
 	// 			console.log(error);
 	// 			return [];
 	// 		});
-	// }
-	open() {}
+	// }}
+
+	open(nameModal: string, usuario?, estado?: string) {
+		const modalRef = this.modalService.open(MODALS[nameModal]);
+		modalRef.componentInstance.usuario = usuario;
+	}
 }

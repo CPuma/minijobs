@@ -1,4 +1,9 @@
 <div class="d-flex bd-highlight my-3">
+    <h3 class="titulo-trabajo">
+        Postulantes para <span>"{{titulo}}"</span>
+    </h3>
+</div>
+<div class="d-flex bd-highlight my-3">
 
     <!-- <div class="mr-auto p-2 bd-highlight">
         <input type="text" (change)="buscarPostulante($event.target.value)" class="form-control mb-2"
@@ -32,15 +37,15 @@
                     <tr *ngFor="let postulante of postulaciones; let i = index">
                         <td scope="row">{{i+1}}</td>
 
-                        <td *ngIf="postulante.multiJobs">{{postulante.multiJobs.apellidoPaterno}} 
-                            {{postulante.multiJobs.apellidoMaterno}}  {{postulante.multiJobs.nombres}}</td>
+                        <td *ngIf="postulante.multiJobs">{{postulante.multiJobs.apellidoPaterno}}
+                            {{postulante.multiJobs.apellidoMaterno}} {{postulante.multiJobs.nombres}}</td>
                         <td>{{postulante.idMultiJob}}</td>
                         <td>{{postulante.fechaPostulacion}}</td>
                         <td>{{postulante.estado}}</td>
                         <td>
                             <button *ngIf="postulante.estado && postulante.estado.toLowerCase() === 'activo' "
                                 class="btn btn-success"
-                                (click)="open('detalles',postulante.idMultiJobs)">Detalles</button>
+                                (click)="open('detallesPostulante',postulante.multiJobs)">Detalles</button>
                         </td>
 
 

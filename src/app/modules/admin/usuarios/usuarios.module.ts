@@ -16,7 +16,10 @@ import { ModalUsuarioDetallesComponent } from './components/modal-usuario-detall
 		// ListaUsuariosComponent,
 		ModalUsuarioDetallesComponent
 	],
-	bootstrap: [ ListaUsuariosComponent ],
+	bootstrap: [ 
+		ListaUsuariosComponent, 
+		ModalUsuarioDetallesComponent 
+	],
 	entryComponents: [ ModalCrearComponent, ModalActivarComponent, ModalUsuarioDetallesComponent ],
 	providers: [ UpperCaseCustomPipe ]
 })

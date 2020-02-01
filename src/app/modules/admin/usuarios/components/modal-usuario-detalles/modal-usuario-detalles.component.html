@@ -10,23 +10,27 @@
         ========================================== -->
     <div class="rating-container">
         <!-- -- -->
-        <span class="heading-rating">Calificacion SocioJob</span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star checked"></span>
-        <span class="fa fa-star"></span>
-        <p class="resumen"><span class="calificacion">4.1</span>  de 2 votos.</p>
-        <hr style="border:3px solid #f1f1f1">
+        <h2 class="heading-rating">Calificacion SocioJob</h2>
 
-        <div class="row" >
+
+        <ng-template #t let-fill="fill">
+            <span class="star" [class.full]="fill === 100">
+                <span class="half" [style.width.%]="fill">&#10030;</span>&#10030;
+            </span>
+        </ng-template>
+
+        <ngb-rating [(rate)]="promedioCalificacionSocioJob" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+        <span> &nbsp; &nbsp; &nbsp; </span>
+
+        <span class="resumen"><span class="calificacion">{{promedioCalificacionSocioJob | number : '1.1-1'}} </span>
+            estrellas de
+            {{calificacionesSocioJob.length}} voto(s)</span>
+        <!-- <div class="row">
             <div class="side">
                 <div>5 star</div>
             </div>
             <div class="middle">
-                <div class="bar-container">
-                    <div class="bar-5"></div>
-                </div>
+                <p><ngb-progressbar type="warning" [value]="25">25</ngb-progressbar></p>
             </div>
             <div class="side right">
                 <div>150</div>
@@ -58,7 +62,7 @@
             </div>
             <div class="middle">
                 <div class="bar-container">
-                    <div class="bar-2" ></div>
+                    <div class="bar-2"></div>
                 </div>
             </div>
             <div class="side right">
@@ -75,8 +79,24 @@
             <div class="side right">
                 <div>20</div>
             </div>
-        </div>
+        </div> -->
         <!-- --- -->
+        <hr style="border:3px solid #f1f1f1">
+        <h2 class="heading-rating">Calificacion MultiJob</h2>
+
+
+        <ng-template #t let-fill="fill">
+            <span class="star" [class.full]="fill === 100">
+                <span class="half" [style.width.%]="fill">&#10030;</span>&#10030;
+            </span>
+        </ng-template>
+
+        <ngb-rating [(rate)]="promedioCalificacionMutiJob" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+        <span> &nbsp; &nbsp; &nbsp; </span>
+
+        <span class="resumen"><span class="calificacion">{{promedioCalificacionMutiJob | number : '1.1-1'}} </span> estrellas de
+            {{calificacionesMutiJob.length}} voto(s)</span>
+
     </div>
     <!-- ==========================================
 ========================================== -->

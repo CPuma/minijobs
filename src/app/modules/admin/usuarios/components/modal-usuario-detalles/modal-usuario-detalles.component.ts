@@ -26,8 +26,9 @@ export class ModalUsuarioDetallesComponent implements OnInit {
 	ngOnInit() {
 		console.log(this.usuario);
 		if (this.usuario && this.usuario.documentoNumero) {
+			this.titulo = this.usuario.apellidoPaterno + ' ' + this.usuario.nombres;
 			this.obtenerCalificacionesMultiJob(this.usuario.documentoNumero);
-			this.obteneCalificacionesSocioJob(this.usuario.documentoNumero);
+			this.obtenerCalificacionesSocioJob(this.usuario.documentoNumero);
 		} else {
 			this.closeModal();
 		}
@@ -37,28 +38,31 @@ export class ModalUsuarioDetallesComponent implements OnInit {
 		this.calificacionesFireService.listarCalificacionesxMultiJob(idUsuario).then((calificaciones) => {
 			console.log(calificaciones);
 			if (calificaciones.length > 0) {
-        let promedio = 0;
-        calificaciones.map((calificacion) => (promedio += calificacion.calificacionMultiJob));
+				let promedio = 0;
+				calificaciones.map((calificacion) => {
+					if (calificacion.calificacionMultiJob || calificacion.calificacionMultiJob > 0) {
+						promedio += calificacion.calificacionMultiJob;
+						this.calificacionesMutiJob.push(calificacion);
+					}
+				});
 
-				this.promedioCalificacionMutiJob = promedio/calificaciones.length;
-				this.calificacionesMutiJob = calificaciones;
-				console.log('SOCIOJOBS', calificaciones);
-				console.log('promedio SOCIOJOBS', this.promedioCalificacionMutiJob);
+				this.promedioCalificacionMutiJob = promedio / this.calificacionesMutiJob.length;
 			}
 		});
 	}
-	obteneCalificacionesSocioJob(idUsuario: string): void {
+	obtenerCalificacionesSocioJob(idUsuario: string): void {
 		this.calificacionesFireService.listarCalificacionesxSocioJob(idUsuario).then((calificaciones) => {
 			console.log(calificaciones);
 			if (calificaciones.length > 0) {
 				let promedio = 0;
-        calificaciones.map((calificacion) => (promedio += calificacion.calificacionSocioJob));
-        
-        
-				this.promedioCalificacionSocioJob = promedio/calificaciones.length;
-				console.log('SOCIOJOBS', calificaciones);
-				console.log('promedio SOCIOJOBS', this.promedioCalificacionSocioJob);
-				this.calificacionesSocioJob = calificaciones;
+				calificaciones.map((calificacion) => {
+					if (calificacion.calificacionSocioJob || calificacion.calificacionSocioJob > 0) {
+						promedio += calificacion.calificacionSocioJob;
+						this.calificacionesSocioJob.push(calificacion);
+					}
+				});
+
+				this.promedioCalificacionSocioJob = promedio / this.calificacionesSocioJob.length;
 			}
 		});
 	}

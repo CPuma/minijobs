@@ -1,0 +1,48 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{titulo}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+        <!-- <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"> -->
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body ">
+    <!-- ==========================================
+        
+        ========================================== -->
+    <div class="rating-container">
+        <ul class="detalles-postulante">
+            <li><span>Apellidos:</span>{{usuario.apellidoPaterno}} {{usuario.apellidoMaterno}}</li>
+            <li><span>Nombres:</span>{{usuario.nombres}}</li>
+            <li><span>Tipo Doc:</span>{{usuario.documentoTipo}}</li>
+            <li><span># Doc:</span>{{usuario.documentoNumero}}</li>
+            <li><span>Celular:</span>{{usuario.celular}}</li>
+            <li><span>Correo:</span>{{usuario.usuario}}</li>
+            <li><span>fec. Nac.:</span>{{usuario.fechaNacimiento}}</li>
+            <li><span>Género:</span>{{usuario.genero}}</li>
+        </ul>
+    </div>
+    <!-- ========================================== --> 
+    <div class="rating-container">
+        <hr style="border:3px solid #f1f1f1">
+        <h2 class="heading-rating">Calificacion MultiJob</h2>
+
+
+        <ng-template #t let-fill="fill">
+            <span class="star" [class.full]="fill === 100">
+                <span class="half" [style.width.%]="fill">&#10030;</span>&#10030;
+            </span>
+        </ng-template>
+
+        <ngb-rating [(rate)]="promedioCalificacionMutiJob" [starTemplate]="t" [readonly]="true" max="5"></ngb-rating>
+        <span> &nbsp; &nbsp; &nbsp; </span>
+
+        <span class="resumen"><span class="calificacion">{{promedioCalificacionMutiJob | number : '1.1-1'}} </span>
+            estrellas de
+            {{calificacionesMutiJob.length}} voto(s)</span>
+
+    </div>
+    <!-- ==========================================
+========================================== -->
+</div>
+<div class="modal-footer">
+</div>

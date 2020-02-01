@@ -43,7 +43,8 @@
                         <td>{{trabajo.idMultiJob}}</td>
                         <td>{{trabajo.estado}}</td>
                         <td>
-                            <a class="btn btn-danger" [routerLink]="[trabajo.idTrabajo,'postulantes']">Postulantes</a>
+                            <a class="btn btn-danger" [routerLink]="[trabajo.idTrabajo,'postulantes']"
+                                [queryParams]="{titulo:trabajo.titulo}">Postulantes</a>
                             <button *ngIf="trabajo.estado && trabajo.estado.toLowerCase() === 'inactivo' "
                                 class="btn btn-success"
                                 (click)="open('cambiarEstado',trabajo, 'activo')">Activar</button>

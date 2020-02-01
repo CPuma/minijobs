@@ -8,11 +8,19 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ListaPostulantesComponent } from './components/lista-postulantes/lista-postulantes.component';
 import { TrabajosComponent } from './pages/trabajos/trabajos.component';
 import { RouterModule } from '@angular/router';
+import { ModalDetallesPostulanteComponent } from './components/modal-detalles-postulante/modal-detalles-postulante.component';
 
 @NgModule({
-	declarations: [ ListaTrabajosComponent, ModalActivarComponent, ListaPostulantesComponent, TrabajosComponent ],
+	declarations: [
+		ListaTrabajosComponent,
+		ModalActivarComponent,
+		ListaPostulantesComponent,
+		TrabajosComponent,
+		ModalDetallesPostulanteComponent
+	],
 	imports: [ RouterModule, CommonModule, NgbModule, ReactiveFormsModule, SharedModule ],
-	bootstrap: [ ListaTrabajosComponent ],
+	bootstrap: [ ListaTrabajosComponent, 
+		ListaPostulantesComponent,ModalDetallesPostulanteComponent ],
 	entryComponents: [
 		// ModalCrearComponent,
 		ModalActivarComponent
