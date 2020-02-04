@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAnalytics } from '@angular/fire/analytics';
+import { Color, Label } from 'ng2-charts';
+import { ChartDataSets } from 'chart.js';
 
 @Component({
 	selector: 'app-graficos',
@@ -7,19 +9,8 @@ import { AngularFireAnalytics } from '@angular/fire/analytics';
 	styleUrls: [ './graficos.component.css' ]
 })
 export class GraficosComponent implements OnInit {
-	constructor(private analytics: AngularFireAnalytics) {
-		analytics
-			.logEvent('login', { method: 'Google' }, { global: true })
-			.then((result) => {
-				console.log('LOG EVENT::::', result);
-			})
-			.catch((error) => console.log('ERROR LOG:::', error));
-		analytics.app
-			.then((result) => {
-				console.log('LOG  LOGIN::::', result);
-			})
-			.catch((error) => console.log('ERROR LOG:::', error));
-	}
+	
+	constructor() {}
 
 	ngOnInit() {}
 }

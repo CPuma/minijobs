@@ -45,6 +45,7 @@ export const AdminRouting: Routes = [
 				path: 'dashboard',
 				canActivate: [ AuthGuard ],
 				component: GraficosComponent
+				
 			},
 			{
 				path: '**',
